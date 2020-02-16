@@ -30,7 +30,7 @@ def list_urls():
         writer.writerows(url_output)
 
 def list_info():
-    with open('urls2.tsv') as f:
+    with open('urls.csv') as f:
     lines = f.readlines()
     
     for line in lines:
