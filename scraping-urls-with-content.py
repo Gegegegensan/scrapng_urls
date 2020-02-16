@@ -45,7 +45,7 @@ def list_info():
             output = company, date_info, line, info
             info_output.append(output)
 
-    with open("date-info.csv", 'w', encoding='Shift_jis') as f:
+    with open("urls-detailed-info.csv", 'w', encoding='Shift_jis') as f:
         writer = csv.writer(f, lineterminator="\n")
         writer.writerows(info_output)
         
