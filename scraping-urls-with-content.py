@@ -6,6 +6,7 @@ import csv
 
 x = 1
 url_output = []
+info_output = []
 
 def list_urls():
     while x < 4: # Change this number accordingly
@@ -28,6 +29,27 @@ def list_urls():
         writer = csv.writer(f, lineterminator="\n")
         writer.writerows(url_output)
 
+def list_info():
+    with open('urls2.tsv') as f:
+    lines = f.readlines()
+    
+    for line in lines:
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        r = requests.get(line, headers=headers)
+        soup = BeautifulSoup(r.text, 'lxml')
+        for date in soup.find_all('<SPECIFY>', class_='<SPECIFY>'): # Replace <SPECIFY> with necessary HTML tag and class name
+            date_info = date.get_text()
+            company = soup.title
+            url = line
+            info = soup.find_all('<SPECIFY>',type='<SPECIFY>') # Replace <SPECIFY> with necessary HTML tag and class name
+            output = company, date_info, line, info
+            info_output.append(output)
 
+    with open("date-info.csv", 'w', encoding='Shift_jis') as f:
+        writer = csv.writer(f, lineterminator="\n")
+        writer.writerows(info_output)
+        
+        
 if __name__ == '__main__':
     list_urls()
+    list_info()
