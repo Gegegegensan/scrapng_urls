@@ -1,3 +1,35 @@
+# Use this for only scriping the URLs
+
+# import requests
+# from bs4 import BeautifulSoup
+# import csv
+
+# url_output = []
+
+# def list_urls():
+#     x = 1
+#     while x <= 33:
+#         page = "/page/" + str(x)
+#         url = "" + page
+#         headers = {'User-Agent':'Mozilla/5.0'}
+#         r = requests.get(url, headers=headers)
+#         soup = BeautifulSoup(r.text, "lxml")
+#         for aa in soup.find_all("a", class_="companies-item"):
+#             link = aa.get("href")
+#             name = aa.get_text()
+#             output = link
+#             #print(output)
+#             url_output.append(output)
+#         x = x + 1
+
+#     with open("urls.csv", 'w', encoding='Shift_jis') as f:
+#         writer = csv.writer(f, lineterminator="\n")
+#         writer.writerows(url_output)
+
+# if __name__ == '__main__':
+#     list_urls()
+
+
 # -*- coding: utf-8 -*-
 
 import requests
@@ -28,7 +60,9 @@ def list_urls():
     with open("urls.csv", 'w', encoding='Shift_jis') as f:
         writer = csv.writer(f, lineterminator="\n")
         writer.writerows(url_output)
-
+      
+        
+        
 def list_info():
     with open('urls.csv') as f:
     lines = f.readlines()
